@@ -1,1 +1,5 @@
-console.log("game.ts!")
+export class Game {
+    run() {
+        console.log("aha")
+    }
+}
