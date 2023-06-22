@@ -1,5 +1,5 @@
+import { Entity } from "./entities.js";
 import { Scene } from "./scene.js";
-import { Team } from "./enums.js";
 
 export class Game {
     run(canvas: HTMLCanvasElement) {
@@ -23,8 +23,9 @@ export class Game {
 
         // Entities
         for (const entity of scene.entities) {
-            console.log(entity);
-            console.log(Team.Blue);
+            ctx.fillStyle = entity.team
+            ctx.arc(entity.x, entity.y, entity.radius, 0, 2 * Math.PI)
+            ctx.fill();
         }
     }
 }

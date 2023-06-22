@@ -5,7 +5,6 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 };
 var _Game_instances, _Game_gameLoop, _Game_update, _Game_draw;
 import { Scene } from "./scene.js";
-import { Team } from "./enums.js";
 export class Game {
     constructor() {
         _Game_instances.add(this);
@@ -26,7 +25,8 @@ _Game_instances = new WeakSet(), _Game_gameLoop = function _Game_gameLoop(scene,
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // Entities
     for (const entity of scene.entities) {
-        console.log(entity);
-        console.log(Team.Blue);
+        ctx.fillStyle = entity.team;
+        ctx.arc(entity.x, entity.y, entity.radius, 0, 2 * Math.PI);
+        ctx.fill();
     }
 };
