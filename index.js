@@ -1,3 +1,3 @@
 import { Game } from "./game/game.js";
-var game = new Game();
+const game = new Game();
 game.run();
