@@ -1,3 +1,2 @@
-abstract class Entity {
-    
+export class Entity {
 }

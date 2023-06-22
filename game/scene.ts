@@ -1,7 +1,10 @@
+import { Entity } from "./entities.js";
+
 export class Scene {
-    debug: any
+    entities: Entity[]
 
     constructor() {
-        this.debug = 1337 
+        this.entities = []
+        this.entities.push(new Entity());
     }
 }

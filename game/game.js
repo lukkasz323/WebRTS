@@ -5,20 +5,28 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 };
 var _Game_instances, _Game_gameLoop, _Game_update, _Game_draw;
 import { Scene } from "./scene.js";
+import { Team } from "./enums.js";
 export class Game {
     constructor() {
         _Game_instances.add(this);
     }
-    run() {
+    run(canvas) {
         const scene = new Scene();
-        setInterval(() => __classPrivateFieldGet(this, _Game_instances, "m", _Game_gameLoop).call(this, scene));
+        const ctx = canvas.getContext("2d");
+        setInterval(() => __classPrivateFieldGet(this, _Game_instances, "m", _Game_gameLoop).call(this, scene, canvas, ctx));
     }
 }
-_Game_instances = new WeakSet(), _Game_gameLoop = function _Game_gameLoop(scene) {
+_Game_instances = new WeakSet(), _Game_gameLoop = function _Game_gameLoop(scene, canvas, ctx) {
     __classPrivateFieldGet(this, _Game_instances, "m", _Game_update).call(this, scene);
-    __classPrivateFieldGet(this, _Game_instances, "m", _Game_draw).call(this, scene);
+    __classPrivateFieldGet(this, _Game_instances, "m", _Game_draw).call(this, scene, canvas, ctx);
 }, _Game_update = function _Game_update(scene) {
-    console.log(scene);
-}, _Game_draw = function _Game_draw(scene) {
-    console.log(scene.debug);
+}, _Game_draw = function _Game_draw(scene, canvas, ctx) {
+    // Background
+    ctx.fillStyle = "#111";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Entities
+    for (const entity of scene.entities) {
+        console.log(entity);
+        console.log(Team.Blue);
+    }
 };
