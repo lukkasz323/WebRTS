@@ -1,6 +1,3 @@
-"use strict";
-exports.__esModule = true;
-var game_1 = require("./game/game");
-console.log("index");
-var game = new game_1.Game();
+import { Game } from "./game/game.js";
+var game = new Game();
 game.run();

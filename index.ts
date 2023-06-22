@@ -1,4 +1,4 @@
-import { Game } from "./game/game";
-console.log("index");
+import { Game } from "./game/game.js";
+
 const game = new Game();
 game.run();

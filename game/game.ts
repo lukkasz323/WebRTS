@@ -1,5 +1,5 @@
 export class Game {
     run() {
-        console.log("aha")
+        console.log("running!")
     }
 }

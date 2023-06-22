@@ -1,8 +1,16 @@
 {
-    "compile-hero.disable-compile-files-on-did-save-code": false,
     "files.exclude": {
         "**/*.js": {
             "when": "$(basename).ts"
         }
+    },
+    "saveAndRun": {
+        "commands": [
+            {
+                "match": "\\.ts$",
+                "cmd": "tsc.cmd --build",
+                "silent": true
+            }
+        ]
     }
 }
