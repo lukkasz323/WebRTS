@@ -1,5 +1,6 @@
 import { Entity } from "./entities.js";
 import { Scene } from "./scene.js";
+import { event_onmousemove, event_onmousedown, event_onmouseup } from "./events.js";
 
 export class Game {
     run(canvas: HTMLCanvasElement) {
@@ -83,23 +84,6 @@ function draw(scene: Scene, canvas: HTMLCanvasElement, ctx: CanvasRenderingConte
             scene.mouse.y - scene.mouse.downY,
         );
     }
-}
-
-function event_onmousemove(e: MouseEvent, scene: Scene, canvas: HTMLCanvasElement) {
-    const canvasBoundingClientRect: DOMRect = canvas.getBoundingClientRect();
-
-    scene.mouse.x = e.x - canvasBoundingClientRect.x + 1;
-    scene.mouse.y = e.y - Math.floor(canvasBoundingClientRect.y);
-}
-
-function event_onmousedown(e: MouseEvent, scene: Scene) {
-    scene.mouse.isDown = true;
-    scene.mouse.downX = scene.mouse.x;
-    scene.mouse.downY = scene.mouse.y;
-}
-
-function event_onmouseup(e: MouseEvent, scene: Scene) {
-    scene.mouse.isDown = false;
 }
 
 export const pointCollides = (x, y, bounds) => 

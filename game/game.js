@@ -1,4 +1,5 @@
 import { Scene } from "./scene.js";
+import { event_onmousemove, event_onmousedown, event_onmouseup } from "./events.js";
 export class Game {
     run(canvas) {
         const scene = new Scene();
@@ -67,19 +68,6 @@ function draw(scene, canvas, ctx) {
         ctx.lineWidth = 2;
         ctx.strokeRect(scene.mouse.downX, scene.mouse.downY, scene.mouse.x - scene.mouse.downX, scene.mouse.y - scene.mouse.downY);
     }
-}
-function event_onmousemove(e, scene, canvas) {
-    const canvasBoundingClientRect = canvas.getBoundingClientRect();
-    scene.mouse.x = e.x - canvasBoundingClientRect.x + 1;
-    scene.mouse.y = e.y - Math.floor(canvasBoundingClientRect.y);
-}
-function event_onmousedown(e, scene) {
-    scene.mouse.isDown = true;
-    scene.mouse.downX = scene.mouse.x;
-    scene.mouse.downY = scene.mouse.y;
-}
-function event_onmouseup(e, scene) {
-    scene.mouse.isDown = false;
 }
 export const pointCollides = (x, y, bounds) => bounds.x <= x && x < bounds.x + bounds.w &&
     bounds.y <= y && y < bounds.y + bounds.h;
