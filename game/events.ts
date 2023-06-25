@@ -24,6 +24,7 @@ function event_onmousedown(e: MouseEvent, scene: Scene) {
     else if (e.button === MouseButton.Right) {
     }
 }
+
 function event_onmouseup(e: MouseEvent, scene: Scene) {
     if (e.button === MouseButton.Left) {
         scene.mouse.isButtonDown.left = false;
