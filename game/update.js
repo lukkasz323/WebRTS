@@ -28,4 +28,8 @@ export function update(scene) {
             entity.isInSelectionBox = false;
         }
     }
+    // Entities
+    for (const entity of scene.entities) {
+        entity.update();
+    }
 }

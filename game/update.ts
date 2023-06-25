@@ -32,4 +32,9 @@ export function update(scene: Scene) {
             entity.isInSelectionBox = false;
         }
     }
+
+    // Entities
+    for (const entity of scene.entities) {
+        entity.update();
+    }
 }

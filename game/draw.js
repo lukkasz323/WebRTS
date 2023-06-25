@@ -25,4 +25,8 @@ export function draw(scene, canvas, ctx) {
         ctx.lineWidth = 2;
         ctx.strokeRect(scene.mouse.downX, scene.mouse.downY, scene.mouse.x - scene.mouse.downX, scene.mouse.y - scene.mouse.downY);
     }
+    // Debug
+    ctx.fillStyle = "white";
+    ctx.fillText(JSON.stringify(scene), 10, 10);
+    ctx.fillText(JSON.stringify(scene.entities[0]), 10, 20);
 }

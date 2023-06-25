@@ -1,3 +1,13 @@
+export function normalize(vector) {
+    const magnitude = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+    if (magnitude === 0) {
+        return vector; // Avoid division by zero
+    }
+    return {
+        x: vector.x / magnitude,
+        y: vector.y / magnitude,
+    };
+}
 export function rectCircleColliding(rect, circle) {
     const distX = Math.abs(circle.x - rect.x - rect.w / 2);
     const distY = Math.abs(circle.y - rect.y - rect.h / 2);

@@ -34,4 +34,9 @@ export function draw(scene: Scene, canvas: HTMLCanvasElement, ctx: CanvasRenderi
             scene.mouse.y - scene.mouse.downY,
         );
     }
+
+    // Debug
+    ctx.fillStyle = "white";
+    ctx.fillText(JSON.stringify(scene), 10, 10);
+    ctx.fillText(JSON.stringify(scene.entities[0]), 10, 20);
 }
