@@ -16,5 +16,4 @@ export class Game {
 function gameLoop(scene, canvas, ctx) {
     update(scene);
     draw(scene, canvas, ctx);
-    console.log(scene.mouse.x - scene.mouse.downX, scene.mouse.downX - scene.mouse.x);
 }

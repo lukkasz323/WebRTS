@@ -6,20 +6,20 @@ export function update(scene) {
         const tempW = scene.mouse.x - scene.mouse.downX;
         if (tempW > 0) {
             x = scene.mouse.downX;
-            w = scene.mouse.x - scene.mouse.downX;
+            w = tempW;
         }
         else {
             x = scene.mouse.x;
-            w = scene.mouse.downX - scene.mouse.x;
+            w = -tempW;
         }
         const tempH = scene.mouse.y - scene.mouse.downY;
         if (tempH > 0) {
             y = scene.mouse.downY;
-            h = scene.mouse.y - scene.mouse.downY;
+            h = tempH;
         }
         else {
             y = scene.mouse.y;
-            h = scene.mouse.downY - scene.mouse.y;
+            h = -tempH;
         }
         if (scene.mouse.isDown && rectCircleColliding({ x: x, y: y, w: w, h: h }, entity)) {
             entity.isInSelectionBox = true;

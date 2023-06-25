@@ -20,5 +20,4 @@ export class Game {
 function gameLoop(scene: Scene, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
     update(scene);
     draw(scene, canvas, ctx);
-    console.log(scene.mouse.x - scene.mouse.downX, scene.mouse.downX - scene.mouse.x);
 }
