@@ -11,6 +11,11 @@ export function draw(scene: Scene, canvas: HTMLCanvasElement, ctx: CanvasRenderi
         ctx.arc(entity.x, entity.y, entity.r, 0, 2 * Math.PI)
         ctx.fillStyle = entity.team
         ctx.fill(); 
+        if (entity.isSelected) {
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "green";
+            ctx.stroke();
+        }
         if (entity.isInSelectionBox) {
             ctx.lineWidth = 2;
             ctx.strokeStyle = "white";
