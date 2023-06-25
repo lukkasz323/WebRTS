@@ -1,4 +1,6 @@
 import { Scene } from "./scene.js";
+import { update } from "./update.js";
+import { draw } from "./draw.js";
 import { event_onmousemove, event_onmousedown, event_onmouseup } from "./events.js";
 export class Game {
     run(canvas) {
@@ -15,76 +17,4 @@ function gameLoop(scene, canvas, ctx) {
     update(scene);
     draw(scene, canvas, ctx);
     console.log(scene.mouse.x - scene.mouse.downX, scene.mouse.downX - scene.mouse.x);
-}
-function update(scene) {
-    // Entity selection box colliding
-    for (const entity of scene.entities) {
-        let x, y, w, h;
-        const tempW = scene.mouse.x - scene.mouse.downX;
-        if (tempW > 0) {
-            x = scene.mouse.downX;
-            w = scene.mouse.x - scene.mouse.downX;
-        }
-        else {
-            x = scene.mouse.x;
-            w = scene.mouse.downX - scene.mouse.x;
-        }
-        const tempH = scene.mouse.y - scene.mouse.downY;
-        if (tempH > 0) {
-            y = scene.mouse.downY;
-            h = scene.mouse.y - scene.mouse.downY;
-        }
-        else {
-            y = scene.mouse.y;
-            h = scene.mouse.downY - scene.mouse.y;
-        }
-        if (scene.mouse.isDown && rectCircleColliding({ x: x, y: y, w: w, h: h }, entity)) {
-            entity.isInSelectionBox = true;
-        }
-        else {
-            entity.isInSelectionBox = false;
-        }
-    }
-}
-function draw(scene, canvas, ctx) {
-    // Background
-    ctx.fillStyle = "#111";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    // Entities
-    for (const entity of scene.entities) {
-        ctx.beginPath();
-        ctx.arc(entity.x, entity.y, entity.r, 0, 2 * Math.PI);
-        ctx.fillStyle = entity.team;
-        ctx.fill();
-        if (entity.isInSelectionBox) {
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "white";
-            ctx.stroke();
-        }
-    }
-    // Selection box
-    if (scene.mouse.isDown) {
-        ctx.strokeStyle = "green";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(scene.mouse.downX, scene.mouse.downY, scene.mouse.x - scene.mouse.downX, scene.mouse.y - scene.mouse.downY);
-    }
-}
-function rectCircleColliding(rect, circle) {
-    const distX = Math.abs(circle.x - rect.x - rect.w / 2);
-    const distY = Math.abs(circle.y - rect.y - rect.h / 2);
-    if (distX > (rect.w / 2 + circle.r)) {
-        return false;
-    }
-    if (distY > (rect.h / 2 + circle.r)) {
-        return false;
-    }
-    if (distX <= (rect.w / 2)) {
-        return true;
-    }
-    if (distY <= (rect.h / 2)) {
-        return true;
-    }
-    var dx = distX - rect.w / 2;
-    var dy = distY - rect.h / 2;
-    return (dx * dx + dy * dy) <= (circle.r * circle.r);
 }
