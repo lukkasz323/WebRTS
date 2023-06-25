@@ -20,7 +20,7 @@ export function draw(scene, canvas, ctx) {
         }
     }
     // Selection box
-    if (scene.mouse.isDown) {
+    if (scene.mouse.isButtonDown.left) {
         ctx.strokeStyle = "green";
         ctx.lineWidth = 2;
         ctx.strokeRect(scene.mouse.downX, scene.mouse.downY, scene.mouse.x - scene.mouse.downX, scene.mouse.y - scene.mouse.downY);

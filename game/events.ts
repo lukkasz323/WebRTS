@@ -1,4 +1,5 @@
 import { Scene } from "./scene.js";
+import { MouseButton } from "./enums.js";
 
 export function setEvents(scene: Scene, canvas: HTMLCanvasElement) {
     canvas.oncontextmenu = () => false; 
@@ -15,16 +16,27 @@ function event_onmousemove(e: MouseEvent, scene: Scene, canvas: HTMLCanvasElemen
 }
 
 function event_onmousedown(e: MouseEvent, scene: Scene) {
-    scene.mouse.isDown = true;
-    scene.mouse.downX = scene.mouse.x;
-    scene.mouse.downY = scene.mouse.y;
+    if (e.button === MouseButton.Left) {
+        scene.mouse.isButtonDown.left = true;
+        scene.mouse.downX = scene.mouse.x;
+        scene.mouse.downY = scene.mouse.y;
+    }
+    else if (e.button === MouseButton.Right) {
+    }
 }
 function event_onmouseup(e: MouseEvent, scene: Scene) {
-    scene.mouse.isDown = false;
+    if (e.button === MouseButton.Left) {
+        scene.mouse.isButtonDown.left = false;
 
-    for (const entity of scene.entities) {
-        if (entity.isInSelectionBox) {
-            entity.isSelected = true;
+        if (!e.shiftKey) {
+            for (const entity of scene.entities) {
+                entity.isSelected = false;    
+            }
+        }
+        for (const entity of scene.entities) {
+            if (entity.isInSelectionBox) {
+                entity.isSelected = true;
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ export function update(scene: Scene) {
             h = -tempH;
         }
 
-        if (scene.mouse.isDown && rectCircleColliding({x: x, y: y, w: w, h: h}, entity)) {
+        if (scene.mouse.isButtonDown.left && rectCircleColliding({x: x, y: y, w: w, h: h}, entity)) {
             entity.isInSelectionBox = true;
         }
         else {
