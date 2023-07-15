@@ -7,6 +7,7 @@ export function setEvents(scene: Scene, canvas: HTMLCanvasElement) {
     document.onmousemove = (e) => event_onmousemove(e, scene, canvas);
     document.onmouseup = (e) => event_onmouseup(e, scene);
     document.onmousedown = (e) => event_onmousedown(e, scene);
+    document.onkeydown = (e) => event_onkeydown(e, scene);
 }
 
 function event_onmousemove(e: MouseEvent, scene: Scene, canvas: HTMLCanvasElement) {
@@ -28,9 +29,9 @@ function event_onmousedown(e: MouseEvent, scene: Scene) {
         // "Move" order
         for (const entity of scene.entities) {
             if (entity.isSelected) {
-                const x = scene.mouse.x - entity.x;
-                const y = scene.mouse.y - entity.y;
-                entity.move(x, y);
+                const offsetX = scene.mouse.x - entity.x;
+                const offsetY = scene.mouse.y - entity.y;
+                entity.move(offsetX, offsetY);
             }
         }        
 
@@ -47,9 +48,7 @@ function event_onmouseup(e: MouseEvent, scene: Scene) {
 
         // Clear selection
         if (!e.shiftKey) {
-            for (const entity of scene.entities) {
-                entity.isSelected = false;
-            }
+            scene.clearSelection();
         }
 
         // Apply selection
@@ -61,4 +60,31 @@ function event_onmouseup(e: MouseEvent, scene: Scene) {
     } else if (e.button === MouseButton.Right) {
         scene.mouse.isButtonDown.right = false;
     }
+}
+
+function event_onkeydown(e: KeyboardEvent, scene: Scene) {
+    if (e.code === "Space") {
+        
+        // Select next entity
+        while (true) {
+            const nextEntity = scene.entities[scene.nextEntityIndex];
+            if (nextEntity) {
+                scene.clearSelection();
+                nextEntity.isSelected = true;
+            }
+            break;
+        }
+    }
+    // UNFINISHED
+    // if (e.code === "Delete") {
+    //     const selectedEntities = scene.entities.filter(e => e.isSelected)
+    //     for (const  of object) {
+            
+    //     }
+    //     for (let i = 0; i < scene.entities.length; i++) {
+    //         const entity = scene.entities[i];
+
+            
+    //     }
+    // }
 }

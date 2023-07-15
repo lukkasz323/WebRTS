@@ -1,17 +1,18 @@
+import { Team } from "./enums.js";
 import { normalize } from "./utils.js";
 export class Entity {
-    x;
-    y;
-    r;
-    team;
+    x = 0;
+    y = 0;
+    radius = 0;
+    team = Team.Blue;
     isSelected = false;
     isInSelectionBox = false;
     isMoving = false;
     acceleration = { x: 0, y: 0 };
-    constructor(x, y, r, team) {
+    constructor(x, y, radius, team) {
         this.x = x;
         this.y = y;
-        this.r = r;
+        this.radius = radius;
         this.team = team;
     }
     update() {
@@ -25,3 +26,10 @@ export class Entity {
         this.isMoving = true;
     }
 }
+export class Unit extends Entity {
+    constructor() {
+        super(0, 0, 0, Team.Blue);
+    }
+}
+const a = new Unit();
+console.log(JSON.stringify(a));

@@ -13,7 +13,7 @@ export type Bounds = {
 export type Circle = {
     x: number,
     y: number,
-    r: number,
+    radius: number,
 }
 
 export type MouseState = ReturnType<typeof initMouseState>;

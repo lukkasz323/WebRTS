@@ -8,7 +8,7 @@ export function draw(scene: Scene, canvas: HTMLCanvasElement, ctx: CanvasRenderi
     // Entities
     for (const entity of scene.entities) {
         ctx.beginPath();
-        ctx.arc(entity.x, entity.y, entity.r, 0, 2 * Math.PI)
+        ctx.arc(entity.x, entity.y, entity.radius, 0, 2 * Math.PI)
         ctx.fillStyle = entity.team
         ctx.fill(); 
         if (entity.isSelected) {
